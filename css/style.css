@@ -560,3 +560,30 @@ body[data-style="readable"] .content h2 { font: 700 1em/1.5 -apple-system, "Sego
 body[data-style="readable"] .content p, body[data-style="readable"] .content li { line-height: 1.7; }
 body[data-style="readable"] .content ol li { margin: .4em 0; }
 body[data-style="readable"] .footnotes::before { font: 700 1em -apple-system, "Segoe UI", Roboto, Arial, sans-serif; border-bottom: 0; }
+
+/* ---- Mobile: collapse to a single column and fit the header (last, so it wins the cascade) ---- */
+@media (max-width: 1000px) {
+  .layout, html.width-wide .layout { display: block; padding: 0 1.2em; }
+  .vector-header { display: flex; gap: .8em; height: auto; min-height: 3.6em; padding: .5em 1em; }
+  .hdr-left { margin-left: 0; gap: .7em; flex: none; }
+  .search, html.width-wide .search { flex: 1 1 auto; min-width: 0; width: auto; max-width: none; margin: 0; }
+  html.menu-open .sidebar-left { top: 3.6em; width: min(16em, 80vw); padding-top: 1em; overflow-y: auto; box-shadow: 2px 0 6px rgba(0,0,0,.2); }
+}
+@media (max-width: 560px) {
+  .wordmark .name { font-size: .95em; }
+  .search-btn { display: none; }
+  .search input { padding-right: .5em; }
+  .layout, html.width-wide .layout { padding: 0 1em; }
+  .content h1 { font-size: 1.6em; overflow-wrap: anywhere; }
+  .lang { display: none; }
+  .vector-footer, html.width-wide .vector-footer { width: calc(100% - 2em); }
+  .pdf-embed { height: 70vh; min-height: 420px; }
+  .table-wrap, .content pre { max-width: 100%; }
+  .content img, .figure img { max-width: 100%; height: auto; }
+}
+@media (max-width: 560px) {
+  table.data { font-size: .85em; }
+  table.data th, table.data td { padding: .4em .4em; }
+  table.data th { padding-right: 20px; }
+  table.data th::after { right: 6px; }
+}

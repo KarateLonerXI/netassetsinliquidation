@@ -1,6 +1,15 @@
 // Builds the Wikipedia-style chrome around each page's <main> content,
 // and handles the Appearance panel (saved in localStorage).
 (function () {
+  // ---- ADD NEW MEMOS HERE (newest first). This one list feeds the home page,
+  // the memos page and the search box. marks: '*' college pitch, '\u2020' contributor.
+  var MEMO_LIST = [
+    { date: '8/21/26', title: 'Saker Aviation (OTC:SKAS)', file: 'saker-aviation.html', marks: '' },
+    { date: '3/20/26', title: 'Clear Secure (NYSE:YOU)', file: 'clear-secure.html', marks: '*' },
+    { date: '11/21/25', title: 'RITM 8.00% 2030 Sr. notes due 7/15/30', file: 'ritm.html', marks: '*\u2020' },
+    { date: '11/21/25', title: 'UA 7.25% 2030 Sr. notes due 7/15/30', file: 'under-armour.html', marks: '*\u2020' }
+  ];
+
   var root = document.documentElement;
   var store = {
     get: function (k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } },
@@ -19,6 +28,16 @@
   document.addEventListener('DOMContentLoaded', function () {
     var body = document.body;
     var base = body.getAttribute('data-root') || '';
+    // <ul data-memos> (optionally data-limit="N") is filled from MEMO_LIST.
+    document.querySelectorAll('ul[data-memos]').forEach(function (ul) {
+      var limit = parseInt(ul.getAttribute('data-limit'), 10) || MEMO_LIST.length;
+      ul.innerHTML = MEMO_LIST.slice(0, limit).map(function (m) {
+        var marks = '';
+        if (m.marks.indexOf('*') > -1) { marks += '<a class="star" href="#college-note" aria-label="See footnote">*</a>'; }
+        if (m.marks.indexOf('\u2020') > -1) { marks += '<a class="star dagger" href="#contrib-note" aria-label="See footnote">&dagger;</a>'; }
+        return '<li><a href="' + (base ? '' : 'memos/') + m.file + '">' + m.date + '&nbsp; ' + m.title + '</a>' + marks + '</li>';
+      }).join('');
+    });
     var page = body.getAttribute('data-page') || '';
     var content = document.querySelector('main, article');
     if (!content) { return; }
@@ -31,12 +50,7 @@
       ['memos', 'Investment Memos', 'memos/index.html'],
       ['about', 'About Me', 'about.html']
     ];
-    var memos = [
-      ['8/21/26\u00a0 Saker Aviation (OTC:SKAS)', 'memos/saker-aviation.html'],
-      ['3/20/26\u00a0 Clear Secure (NYSE:YOU)', 'memos/clear-secure.html'],
-      ['11/21/25\u00a0 RITM 8.00% 2030 Sr. notes due 7/15/30', 'memos/ritm.html'],
-      ['11/21/25\u00a0 UA 7.25% 2030 Sr. notes due 7/15/30', 'memos/under-armour.html']
-    ];
+    var memos = MEMO_LIST.map(function (m) { return [m.date + '\u00a0 ' + m.title, 'memos/' + m.file]; });
 
 
     var menu = nav.map(function (n) {
@@ -110,7 +124,13 @@
     });
     document.getElementById('app-toggle').addEventListener('click', function (e) { e.preventDefault(); toggleSide('right'); });
     document.querySelectorAll('.hide-btn').forEach(function (b) {
-      b.addEventListener('click', function () { toggleSide(b.getAttribute('data-hide')); });
+      b.addEventListener('click', function () {
+        if (window.innerWidth <= 1000) { root.classList.remove('menu-open'); } else { toggleSide(b.getAttribute('data-hide')); }
+      });
+    });
+    // On phones the Contents list is a drawer: tapping outside it closes it.
+    document.addEventListener('click', function (e) {
+      if (root.classList.contains('menu-open') && !e.target.closest('.sidebar-left, #menu-btn')) { root.classList.remove('menu-open'); }
     });
     var input = document.getElementById('search'), results = document.getElementById('results');
     var all = nav.map(function (n) { return [n[1], n[2]]; }).concat(memos);
