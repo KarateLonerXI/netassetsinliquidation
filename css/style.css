@@ -597,3 +597,6 @@ body[data-style="readable"] .footnotes::before { font: 700 1em -apple-system, "S
 
 /* a heading right after a floated figure starts below it instead of beside it */
 .figure.figure-lg + h2 { clear: both; }
+
+/* centred figures in the memos (no text wrap); full width on phones */
+.figure.figure-center { float: none; clear: both; width: 36em; max-width: 100%; margin: 1.4em auto 1.6em; }
