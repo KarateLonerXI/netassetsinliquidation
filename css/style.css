@@ -590,3 +590,7 @@ body[data-style="readable"] .footnotes::before { font: 700 1em -apple-system, "S
 
 /* compact numbered lists (e.g. the LogicMark timeline) */
 .content ol.compact li, body[data-style="readable"] .content ol.compact li { margin: 0; line-height: 1.4; }
+
+/* larger figures in the memos; text wraps around them on desktop, stacks on phones */
+.figure.figure-lg { float: right; clear: right; width: 36em; max-width: 58%; margin: .3em 0 1em 1.6em; }
+@media (max-width: 700px) { .figure.figure-lg { float: none; width: 100%; max-width: 100%; margin: 1em 0; } }
