@@ -4,7 +4,7 @@
   // ---- ADD NEW MEMOS HERE (newest first). This one list feeds the home page,
   // the memos page and the search box. marks: '*' college pitch, '\u2020' contributor.
   var MEMO_LIST = [
-    { date: '10/18/26', title: 'LogicMark (LMGK)', file: 'logicmark.html', marks: '' },
+    { date: '10/18/26', title: 'LogicMark (OTC:LGMK)', file: 'logicmark.html', marks: '' },
     { date: '8/21/26', title: 'Saker Aviation (OTC:SKAS)', file: 'saker-aviation.html', marks: '' },
     { date: '3/20/26', title: 'Clear Secure (NYSE:YOU)', file: 'clear-secure.html', marks: '*' },
     { date: '11/21/25', title: 'RITM 8.00% 2030 Sr. notes due 7/15/30', file: 'ritm.html', marks: '*\u2020' },
