@@ -589,4 +589,4 @@ body[data-style="readable"] .footnotes::before { font: 700 1em -apple-system, "S
 }
 
 /* compact numbered lists (e.g. the LogicMark timeline) */
-.content ol.compact li, body[data-style="readable"] .content ol.compact li { margin: 0; }
+.content ol.compact li, body[data-style="readable"] .content ol.compact li { margin: 0; line-height: 1.4; }
