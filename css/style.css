@@ -587,3 +587,6 @@ body[data-style="readable"] .footnotes::before { font: 700 1em -apple-system, "S
   table.data th { padding-right: 20px; }
   table.data th::after { right: 6px; }
 }
+
+/* compact numbered lists (e.g. the LogicMark timeline) */
+.content ol.compact li, body[data-style="readable"] .content ol.compact li { margin: 0; }
