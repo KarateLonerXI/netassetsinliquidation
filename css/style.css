@@ -605,4 +605,4 @@ body[data-style="readable"] .footnotes::before { font: 700 1em -apple-system, "S
 .content ol.compact li::marker { font-weight: bold; }
 
 /* a 1px anchor under the About Me heading for Lurk to peek over the rule */
-h1 .heading-pal { display: block; height: 1px; margin-top: .15em; }
+h1 .heading-pal { display: inline-block; height: 1px; width: 1em; vertical-align: -.5em; }
