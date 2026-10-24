@@ -604,5 +604,5 @@ body[data-style="readable"] .footnotes::before { font: 700 1em -apple-system, "S
 /* bold the list numbers in the LogicMark timeline */
 .content ol.compact li::marker { font-weight: bold; }
 
-/* a 1px anchor under the About Me heading for Lurk to peek over the rule */
-h1 .heading-pal { display: inline-block; height: 1px; width: 1em; vertical-align: -.5em; }
+/* zero-height block at the foot of the About Me heading, so Lurk peeks over the rule */
+h1 .rule-anchor { display: block; height: 0; }
