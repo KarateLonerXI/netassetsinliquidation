@@ -607,3 +607,6 @@ body[data-style="readable"] .footnotes::before { font: 700 1em -apple-system, "S
 /* zero-height anchor on the rule, just right of the About Me heading, so Lurk peeks up beside the text */
 h1:has(.rule-anchor) { position: relative; }
 h1 .rule-anchor { position: absolute; left: calc(100% + .6em); top: 100%; width: 4em; height: 0; }
+
+/* keep the sticky header above Piixpal's overlay so pals slide under the search bar */
+.vector-header { z-index: 2147483647; }
